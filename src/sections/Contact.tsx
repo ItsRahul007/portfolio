@@ -1,13 +1,17 @@
-import Reveal from '../components/Reveal'
-import { profile } from '../data/content'
-import './contact.css'
+import Reveal from "../components/Reveal";
+import { profile } from "../data/content";
+import "./contact.css";
 
 const channels = [
-  { k: 'email', label: profile.email, href: `mailto:${profile.email}` },
-  { k: 'phone', label: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}` },
-  { k: 'github', label: 'itsrahul007', href: profile.github },
-  { k: 'linkedin', label: 'rahul-ghosh', href: profile.linkedin },
-]
+  { k: "email", label: profile.email, href: `mailto:${profile.email}` },
+  {
+    k: "phone",
+    label: profile.phone,
+    href: `tel:${profile.phone.replace(/\s/g, "")}`,
+  },
+  { k: "github", label: "itsRahul007", href: profile.github },
+  { k: "linkedin", label: "rahul-ghosh", href: profile.linkedin },
+];
 
 export default function Contact() {
   return (
@@ -31,7 +35,9 @@ export default function Contact() {
                   <a
                     className="foot__link"
                     href={c.href}
-                    {...(c.href.startsWith('http') ? { target: '_blank', rel: 'noreferrer' } : {})}
+                    {...(c.href.startsWith("http")
+                      ? { target: "_blank", rel: "noreferrer" }
+                      : {})}
                   >
                     {c.label}
                     <span className="foot__link-rule" aria-hidden="true" />
@@ -49,9 +55,13 @@ export default function Contact() {
       </div>
 
       <div className="shell foot__base">
-        <span className="meta">{profile.name} · {profile.location}</span>
-        <span className="meta">Built with React, TypeScript & Motion · 2026</span>
+        <span className="meta">
+          {profile.name} · {profile.location}
+        </span>
+        <span className="meta">
+          Built with React, TypeScript & Motion · 2026
+        </span>
       </div>
     </footer>
-  )
+  );
 }
