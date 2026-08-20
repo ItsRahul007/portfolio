@@ -49,9 +49,9 @@
 .role__now {
   justify-self: start;
   padding: 0.15rem 0.5rem;
+  border: 1px solid var(--signal);
   border-radius: 99px;
-  background: rgba(255, 77, 31, 0.12);
-  color: var(--signal);
+  color: var(--signal-ink);
   font-family: var(--ff-mono);
   font-size: var(--t-xxs);
   letter-spacing: 0.1em;
@@ -103,9 +103,14 @@
   font-size: 1.15rem;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--signal);
+  color: var(--signal-ink);
 }
-.deliv__count[data-empty='true'] { color: var(--rule); }
+.deliv__count--none {
+  align-self: center;
+  width: 1.1rem;
+  height: 1px;
+  background: var(--rule);
+}
 .deliv__unit { font-size: var(--t-sm); font-weight: 600; }
 .deliv__detail { color: var(--anodize); font-size: var(--t-sm); }
 

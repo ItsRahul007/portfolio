@@ -9,6 +9,30 @@
       content="Rahul Ghosh builds production React, React Native and Flutter screens — healthcare billing across 500+ centers, retail intake for 600+ users, and real-time messaging."
     />
     <meta name="theme-color" content="#F1F3F6" />
+
+    <!-- Resolve the theme before first paint so the page never flashes the
+         wrong one. Stored choice wins; otherwise follow the OS. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+          document.documentElement.dataset.theme = theme
+          if (theme === 'dark') {
+            document
+              .querySelector('meta[name="theme-color"]')
+              .setAttribute('content', '#181C23')
+          }
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
     <link rel="canonical" href="https://rahulghosh.dev/" />
 
     <meta property="og:type" content="website" />

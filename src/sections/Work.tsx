@@ -46,7 +46,13 @@ export default function Work() {
               <ul className="deliv">
                 {r.deliverables.map((d) => (
                   <li className="deliv__row" key={d.unit}>
-                    <span className="deliv__count" data-empty={d.count === '—'}>{d.count}</span>
+                    {/* No count applies to this line, so draw a rule rather than
+                        an em-dash — nothing for a screen reader to read out. */}
+                    {d.count === '—' ? (
+                      <span className="deliv__count deliv__count--none" aria-hidden="true" />
+                    ) : (
+                      <span className="deliv__count">{d.count}</span>
+                    )}
                     <span className="deliv__unit">{d.unit}</span>
                     <span className="deliv__detail">{d.detail}</span>
                   </li>

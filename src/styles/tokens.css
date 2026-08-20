@@ -2,17 +2,105 @@
    Palette drawn from device hardware: anodized aluminium, screen glass, and
    the hot orange of a reload. Orange is spent in exactly one register —
    state changes and the active screen. Nowhere else.
+
+   Two themes. Hex values are declared once, in --l-* (light) and --d-* (dark)
+   pairs, then a short assignment list picks a set. Only the assignment list is
+   duplicated per theme, so the two palettes cannot drift apart.
+
+   Three families of surface, because they behave differently across themes:
+     page    — inverts. The sheet you read.
+     band    — stays dark in both. The rail, the footer, the bundler panel:
+               a deeper material the page is laid over.
+     chassis — stays a metal slab in both, but catches more light on a dark
+               page so the phone doesn't dissolve into the background.
    ─────────────────────────────────────────────────────────────────────────── */
 :root {
-  --glass:    #F1F3F6; /* page — cool screen white */
-  --glass-2:  #E7EAEF; /* recessed panels */
-  --rule:     #CFD5DD; /* hairlines, dimension lines */
-  --graphite: #1C1F24; /* body copy, phone chassis, dark sections */
-  --graphite-2:#2A2E35;
-  --anodize:  #7C8593; /* labels, metadata, secondary copy */
-  --anodize-2:#9AA3B0;
-  --signal:   #FF4D1F; /* hot reload. one job only. */
-  --dart:     #2F6BFF; /* links + focus ring */
+  /* light */
+  --l-page:      #F1F3F6; /* cool screen white */
+  --l-surface-2: #E7EAEF; /* recessed panels */
+  --l-raised:    #FFFFFF; /* the lifted cell in a segmented control */
+  --l-ink:       #1C1F24; /* body copy, headings, hairline borders */
+  --l-anodize:   #646D7A; /* labels, metadata, secondary copy — 4.7:1 on page */
+  --l-rule:      #CFD5DD; /* dimension lines, section hairlines */
+  --l-hairline:  #E2E6EC; /* the finer rule used inside a phone screen */
+  --l-signal:    #FF4D1F; /* hot reload — fills, rules, dots */
+  --l-signal-ink:#C4340C; /* the same accent as text: 4.9:1 on page */
+  --l-dart:      #2F6BFF; /* links, focus ring */
+  --l-band:      #1C1F24;
+  /* In light the band's own darkness is the boundary; in dark the two surfaces
+     are close enough that the edge needs an actual hairline. */
+  --l-band-edge: var(--l-band);
+  --l-band-dim:  #9AA3B0; /* muted copy on a band */
+  --l-grid:      rgba(28, 31, 36, 0.045);
+  --l-shadow:    rgba(20, 22, 26, 0.5);
+  --l-chassis-hi:#34383F;
+  --l-chassis-mid:#1C1F24;
+  --l-chassis-lo:#101215;
+  --l-chassis-rim:rgba(241, 243, 246, 0.14);
+  --l-ok:        #0B8A62;
+  --l-media-hi:  #C6CDD7;
+  --l-media-lo:  #939DAB;
+  /* Read receipts sit on the outgoing bubble, which is --graphite — so the
+     tick has to flip with it, not stay a fixed blue. */
+  --l-tick:      #74D0FF;
+
+  /* dark — blue-shifted graphite, not black; the sheet under a desk lamp */
+  --d-page:      #181C23;
+  --d-surface-2: #1F242B;
+  --d-raised:    #2A3038;
+  --d-ink:       #E7EBF1;
+  --d-anodize:   #8E98A6;
+  --d-rule:      #2C323B;
+  --d-hairline:  #333A44;
+  --d-signal:    #FF6236; /* lifted a step: small orange text has to hold up */
+  --d-signal-ink:#FF7A52; /* 6.6:1 on page */
+  --d-dart:      #7AA2FF;
+  --d-band:      #0B0E12;
+  --d-band-dim:  #79838F;
+  --d-band-edge: #2C323B;
+  --d-grid:      rgba(231, 235, 241, 0.05);
+  --d-shadow:    rgba(0, 0, 0, 0.7);
+  --d-chassis-hi:#5C636D;
+  --d-chassis-mid:#33393F;
+  --d-chassis-lo:#1B1F24;
+  --d-chassis-rim:rgba(231, 235, 241, 0.22);
+  --d-ok:        #34D399;
+  --d-media-hi:  #5D6674;
+  --d-media-lo:  #414A57;
+  --d-tick:      #0F6C9E;
+
+  /* ── active set: light ── */
+  color-scheme: light;
+  --glass:      var(--l-page);
+  --glass-2:    var(--l-surface-2);
+  --raised:     var(--l-raised);
+  --graphite:   var(--l-ink);
+  --anodize:    var(--l-anodize);
+  --rule:       var(--l-rule);
+  --hairline:   var(--l-hairline);
+  --signal:     var(--l-signal);
+  --signal-ink: var(--l-signal-ink);
+  --dart:       var(--l-dart);
+  --band:       var(--l-band);
+  --band-dim:   var(--l-band-dim);
+  --band-edge:  var(--l-band-edge);
+  --grid:       var(--l-grid);
+  --shadow:     var(--l-shadow);
+  --chassis-hi: var(--l-chassis-hi);
+  --chassis-mid:var(--l-chassis-mid);
+  --chassis-lo: var(--l-chassis-lo);
+  --chassis-rim:var(--l-chassis-rim);
+  --ok:         var(--l-ok);
+  --media-hi:   var(--l-media-hi);
+  --media-lo:   var(--l-media-lo);
+  --tick:       var(--l-tick);
+
+  /* Band copy is light in both themes — a band is always the dark material. */
+  --band-ink: #F1F3F6;
+  --band-rule: rgba(241, 243, 246, 0.18);
+  --band-grid: rgba(241, 243, 246, 0.055);
+  /* The notch is a hole in the glass, so it is black regardless of theme. */
+  --notch: #08090B;
 
   --ff-display: 'Anybody', 'Archivo', 'Arial Narrow', system-ui, sans-serif;
   --ff-body: 'Instrument Sans', system-ui, -apple-system, sans-serif;
@@ -31,6 +119,67 @@
   --stack: clamp(5rem, 11vh, 9.5rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ── active set: dark ────────────────────────────────────────────────────────
+   The inline script in index.html always resolves the system preference to an
+   explicit data-theme before first paint, so this selector does the real work.
+   The media query below is the no-JS fallback and is scoped to :root without a
+   data-theme so the two can never fight. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --glass:      var(--d-page);
+  --glass-2:    var(--d-surface-2);
+  --raised:     var(--d-raised);
+  --graphite:   var(--d-ink);
+  --anodize:    var(--d-anodize);
+  --rule:       var(--d-rule);
+  --hairline:   var(--d-hairline);
+  --signal:     var(--d-signal);
+  --signal-ink: var(--d-signal-ink);
+  --dart:       var(--d-dart);
+  --band:       var(--d-band);
+  --band-dim:   var(--d-band-dim);
+  --band-edge:  var(--d-band-edge);
+  --grid:       var(--d-grid);
+  --shadow:     var(--d-shadow);
+  --chassis-hi: var(--d-chassis-hi);
+  --chassis-mid:var(--d-chassis-mid);
+  --chassis-lo: var(--d-chassis-lo);
+  --chassis-rim:var(--d-chassis-rim);
+  --ok:         var(--d-ok);
+  --media-hi:   var(--d-media-hi);
+  --media-lo:   var(--d-media-lo);
+  --tick:       var(--d-tick);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --glass:      var(--d-page);
+    --glass-2:    var(--d-surface-2);
+    --raised:     var(--d-raised);
+    --graphite:   var(--d-ink);
+    --anodize:    var(--d-anodize);
+    --rule:       var(--d-rule);
+    --hairline:   var(--d-hairline);
+    --signal:     var(--d-signal);
+    --signal-ink: var(--d-signal-ink);
+    --dart:       var(--d-dart);
+    --band:       var(--d-band);
+    --band-dim:   var(--d-band-dim);
+    --band-edge:  var(--d-band-edge);
+    --grid:       var(--d-grid);
+    --shadow:     var(--d-shadow);
+    --chassis-hi: var(--d-chassis-hi);
+    --chassis-mid:var(--d-chassis-mid);
+    --chassis-lo: var(--d-chassis-lo);
+    --chassis-rim:var(--d-chassis-rim);
+    --ok:         var(--d-ok);
+    --media-hi:   var(--d-media-hi);
+    --media-lo:   var(--d-media-lo);
+    --tick:       var(--d-tick);
+  }
 }
 
 *, *::before, *::after { box-sizing: border-box; }

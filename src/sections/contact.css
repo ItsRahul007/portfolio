@@ -1,7 +1,11 @@
+/* .meta is a page token by design; inside a band it has to use the band tone. */
+.foot .meta { color: var(--band-dim); }
+
 .foot {
+  border-top: 1px solid var(--band-edge);
   padding-top: clamp(3.5rem, 8vh, 6.5rem);
-  background: var(--graphite);
-  color: var(--glass);
+  background: var(--band);
+  color: var(--band-ink);
 }
 
 .foot__inner {
@@ -12,7 +16,7 @@
   padding-bottom: clamp(3rem, 7vh, 5rem);
 }
 
-.foot__eyebrow { color: var(--anodize-2); margin-bottom: 1rem; }
+.foot__eyebrow { color: var(--band-dim); margin-bottom: 1rem; }
 .foot__h { display: grid; font-size: clamp(2rem, 4.2vw, 3.75rem); }
 .foot__h span { white-space: nowrap; }
 
@@ -23,14 +27,14 @@
 
 .foot__right { display: grid; gap: 1.75rem; justify-items: start; }
 
-.foot__list { display: grid; width: 100%; border-top: 1px solid rgba(241, 243, 246, 0.18); }
+.foot__list { display: grid; width: 100%; border-top: 1px solid var(--band-rule); }
 .foot__row {
   display: grid;
   grid-template-columns: 5.5rem minmax(0, 1fr);
   align-items: baseline;
   gap: 1rem;
   padding: 0.7rem 0;
-  border-bottom: 1px solid rgba(241, 243, 246, 0.18);
+  border-bottom: 1px solid var(--band-rule);
 }
 .foot__row dd { margin: 0; }
 
@@ -60,7 +64,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1.15rem;
-  border: 1px solid var(--anodize);
+  border: 1px solid var(--band-dim);
   border-radius: 99px;
   font-family: var(--ff-mono);
   font-size: var(--t-xs);
@@ -68,7 +72,7 @@
   text-decoration: none;
   transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease);
 }
-.foot__cv:hover { background: var(--glass); color: var(--graphite); border-color: var(--glass); }
+.foot__cv:hover { background: var(--band-ink); color: var(--band); border-color: var(--band-ink); }
 
 .foot__base {
   display: flex;
@@ -76,7 +80,7 @@
   justify-content: space-between;
   gap: 0.75rem;
   padding-block: 1.15rem;
-  border-top: 1px solid rgba(241, 243, 246, 0.18);
+  border-top: 1px solid var(--band-rule);
 }
 
 @media (max-width: 62rem) {

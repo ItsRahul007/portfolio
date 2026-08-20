@@ -25,7 +25,7 @@
   transition: color 0.28s var(--ease);
 }
 .proj__trigger:hover .proj__name,
-.proj__trigger[aria-expanded='true'] .proj__name { color: var(--signal); }
+.proj__trigger[aria-expanded='true'] .proj__name { color: var(--signal-ink); }
 
 .proj__tag { grid-area: tag; }
 

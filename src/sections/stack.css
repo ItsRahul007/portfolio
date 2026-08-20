@@ -52,7 +52,7 @@
 .grp__item:last-child { padding-right: 0; margin-right: 0; }
 .grp__item:last-child::after { display: none; }
 .grp__items:hover .grp__item { color: var(--anodize); }
-.grp__items .grp__item:hover { color: var(--signal); }
+.grp__items .grp__item:hover { color: var(--signal-ink); }
 
 .grp__edu { display: grid; gap: 0.25rem; font-size: var(--t-sm); }
 .grp__edu span { color: var(--anodize); }

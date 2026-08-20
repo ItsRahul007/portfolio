@@ -6,8 +6,8 @@
   flex-direction: column;
   justify-content: space-between;
   padding: clamp(1.25rem, 4vw, 3rem) var(--gut);
-  background: var(--graphite);
-  color: var(--glass);
+  background: var(--band);
+  color: var(--band-ink);
   overflow: hidden;
   transition: clip-path 0.78s var(--ease-in-out);
   clip-path: inset(0 0 0 0);
@@ -23,8 +23,8 @@
   position: absolute;
   inset: -1px;
   background-image:
-    linear-gradient(to right, rgba(241, 243, 246, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(241, 243, 246, 0.055) 1px, transparent 1px);
+    linear-gradient(to right, var(--band-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--band-grid) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(120% 90% at 50% 45%, #000 15%, transparent 78%);
 }
@@ -49,7 +49,7 @@
   text-transform: uppercase;
   transition: font-stretch 0.5s var(--ease);
 }
-.boot__mark span:last-child { color: var(--anodize-2); }
+.boot__mark span:last-child { color: var(--band-dim); }
 
 .boot__log {
   display: grid;
@@ -66,10 +66,10 @@
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
-  color: var(--anodize-2);
+  color: var(--band-dim);
 }
 .boot__line[data-shown='true'] { opacity: 1; transform: none; }
-.boot__line[data-kind='cmd'] { color: var(--glass); }
+.boot__line[data-kind='cmd'] { color: var(--band-ink); }
 .boot__line[data-kind='ok'] { color: var(--signal); }
 
 .boot__glyph { flex: none; width: 1ch; opacity: 0.75; }
@@ -85,12 +85,12 @@
 
 /* dimension line */
 .boot__dim { display: flex; align-items: center; gap: 0.5rem; }
-.boot__tick { flex: none; width: 1px; height: 11px; background: var(--anodize); }
+.boot__tick { flex: none; width: 1px; height: 11px; background: var(--band-dim); }
 .boot__track {
   position: relative;
   flex: 1;
   height: 1px;
-  background: rgba(241, 243, 246, 0.2);
+  background: var(--band-rule);
 }
 .boot__fill {
   position: absolute;
@@ -105,7 +105,7 @@
   font-size: var(--t-xxs);
   letter-spacing: 0.1em;
   font-variant-numeric: tabular-nums;
-  color: var(--anodize-2);
+  color: var(--band-dim);
 }
 
 .boot__foot {
@@ -117,7 +117,7 @@
   font-size: var(--t-xxs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--anodize);
+  color: var(--band-dim);
 }
 
 @media (max-width: 34rem) {

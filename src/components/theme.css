@@ -1,0 +1,67 @@
+/* Appearance control — the same segmented idiom the billing screen uses. */
+.thm {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  background: var(--glass-2);
+}
+
+.thm__cell {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 3px 7px 2px;
+  border-radius: 99px;
+  transition: background 0.25s var(--ease);
+}
+/* --raised lifts in both themes; --glass would read as recessed on a dark page. */
+.thm__cell:hover { background: var(--raised); }
+.thm__cell[aria-pressed='true'] { background: var(--raised); }
+
+/* A phone slab — bezel plus screen, the same glyph language as the wordmark.
+   The screen tone is fixed per cell so each one previews its own theme, whichever
+   theme is currently active. */
+.thm__slab {
+  position: relative;
+  width: 10px;
+  height: 15px;
+  border: 1.2px solid var(--anodize);
+  border-radius: 2.5px;
+  transition: border-color 0.25s var(--ease);
+}
+.thm__slab::after {
+  content: '';
+  position: absolute;
+  inset: 1.4px;
+  border-radius: 1px;
+}
+.thm__slab[data-tone='light']::after { background: var(--l-page); }
+.thm__slab[data-tone='dark']::after { background: var(--d-band); }
+.thm__cell[aria-pressed='true'] .thm__slab { border-color: var(--graphite); }
+
+/* Active marker, matching the phone preview tabs. */
+.thm__bar {
+  width: 100%;
+  height: 2px;
+  border-radius: 99px;
+  background: transparent;
+  transition: background 0.25s var(--ease);
+}
+.thm__cell[aria-pressed='true'] .thm__bar { background: var(--signal); }
+
+@media (max-width: 30rem) {
+  .thm { padding: 2px; }
+  .thm__cell { padding: 2px 5px 1px; }
+  .thm__slab { width: 8px; height: 12px; }
+}
+
+.thm__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

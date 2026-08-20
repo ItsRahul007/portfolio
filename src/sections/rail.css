@@ -1,8 +1,8 @@
 .rail {
-  border-top: 1px solid var(--graphite);
-  border-bottom: 1px solid var(--graphite);
-  background: var(--graphite);
-  color: var(--glass);
+  border-top: 1px solid var(--band-edge);
+  border-bottom: 1px solid var(--band-edge);
+  background: var(--band);
+  color: var(--band-ink);
   overflow: hidden;
 }
 
@@ -43,7 +43,7 @@
   font-size: var(--t-xxs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--anodize-2);
+  color: var(--band-dim);
 }
 
 .rail__sep {

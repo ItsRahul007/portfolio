@@ -11,8 +11,8 @@
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(to right, rgba(28, 31, 36, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(28, 31, 36, 0.045) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: linear-gradient(to bottom, #000 0%, transparent 88%);
 }
@@ -32,13 +32,13 @@
   height: 7px;
   border-radius: 99px;
   background: var(--signal);
-  box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.55);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 55%, transparent);
   animation: pulse 2.4s infinite;
 }
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(255, 77, 31, 0.5); }
-  70% { box-shadow: 0 0 0 9px rgba(255, 77, 31, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 77, 31, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 50%, transparent); }
+  70% { box-shadow: 0 0 0 9px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 .hero__title { font-size: var(--t-mega); display: grid; }
