@@ -13,7 +13,7 @@
 }
 
 .foot__eyebrow { color: var(--anodize-2); margin-bottom: 1rem; }
-.foot__h { display: grid; font-size: clamp(2rem, 4.6vw, 4.25rem); }
+.foot__h { display: grid; font-size: clamp(2rem, 4.2vw, 3.75rem); }
 .foot__h span { white-space: nowrap; }
 
 /* "the next screen" is 15 characters at 125% width — it sets the ceiling here. */
