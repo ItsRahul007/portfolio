@@ -1,0 +1,118 @@
+.work { display: grid; }
+
+.role {
+  --pad: clamp(2rem, 4vw, 3.25rem);
+  --node-y: calc(var(--pad) + 0.84rem);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25rem minmax(9rem, 12rem) minmax(0, 1fr);
+  gap: 0 clamp(1rem, 3vw, 2.5rem);
+  padding-block: var(--pad);
+  border-top: 1px solid var(--rule);
+}
+.role:last-child { border-bottom: 1px solid var(--rule); }
+
+.role__spine { grid-row: 1 / -1; display: flex; justify-content: center; }
+/* Each role draws the spine across its own full box, padding included. Because
+   the roles are stacked flush, the segments meet and read as one line at any
+   width — no arithmetic against the neighbour's padding. The first role starts
+   at its node, the last one stops at its node. */
+.role__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.6rem;
+  width: 1px;
+  background: var(--rule);
+}
+.role:first-child .role__line { top: var(--node-y); }
+.role:last-child .role__line { top: 0; bottom: auto; height: var(--node-y); }
+
+.role__node {
+  position: relative;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  margin-top: 0.55rem;
+  /* --node-y is the node's centre measured from the role's top edge:
+     the role's own top padding plus the node's offset inside the row. */
+  border: 1px solid var(--graphite);
+  border-radius: 99px;
+  background: var(--glass);
+  box-shadow: 0 0 0 4px var(--glass);
+}
+.role__node[data-current='true'] { background: var(--signal); border-color: var(--signal); }
+
+
+.role__meta { display: grid; gap: 0.5rem; align-content: start; padding-top: 0.35rem; }
+.role__dates { color: var(--graphite); }
+.role__now {
+  justify-self: start;
+  padding: 0.15rem 0.5rem;
+  border-radius: 99px;
+  background: rgba(255, 77, 31, 0.12);
+  color: var(--signal);
+  font-family: var(--ff-mono);
+  font-size: var(--t-xxs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.role__main { display: grid; gap: 0.9rem; }
+.role__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.65rem;
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-stretch: 115%;
+  font-size: var(--t-lg);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.role__co {
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--ff-mono);
+  font-weight: 500;
+  font-size: var(--t-xxs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--anodize);
+}
+.role__blurb { max-width: 58ch; color: var(--anodize); font-size: var(--t-sm); }
+
+/* Quantities, not steps — the number leads. */
+.deliv { display: grid; margin-top: 0.35rem; border-top: 1px solid var(--rule); }
+.deliv__row {
+  display: grid;
+  grid-template-columns: 3.6rem minmax(7rem, 11rem) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.35rem 1.15rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--rule);
+  transition: background 0.25s var(--ease);
+}
+.deliv__row:hover { background: color-mix(in srgb, var(--glass-2) 70%, transparent); }
+.deliv__count {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-stretch: 118%;
+  font-size: 1.15rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--signal);
+}
+.deliv__count[data-empty='true'] { color: var(--rule); }
+.deliv__unit { font-size: var(--t-sm); font-weight: 600; }
+.deliv__detail { color: var(--anodize); font-size: var(--t-sm); }
+
+@media (max-width: 56rem) {
+  .role { grid-template-columns: 1.25rem minmax(0, 1fr); }
+  .role__meta { grid-column: 2; margin-bottom: 0.9rem; }
+  .role__main { grid-column: 2; }
+  .deliv__row { grid-template-columns: 3.2rem minmax(0, 1fr); }
+  .deliv__detail { grid-column: 2; }
+}

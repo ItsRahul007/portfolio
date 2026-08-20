@@ -1,0 +1,62 @@
+.stack { display: grid; border-top: 1px solid var(--graphite); }
+
+.grp {
+  display: grid;
+  grid-template-columns: minmax(10rem, 15rem) minmax(0, 1fr);
+  gap: 0.85rem clamp(1.25rem, 4vw, 3rem);
+  padding-block: clamp(1.35rem, 2.6vw, 2rem);
+  border-bottom: 1px solid var(--rule);
+}
+.grp:last-child { border-bottom: 1px solid var(--graphite); }
+
+.grp__head { display: grid; gap: 0.3rem; align-content: start; }
+.grp__title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-stretch: 116%;
+  font-size: var(--t-lg);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+}
+
+.grp__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  column-gap: 0;
+  row-gap: 0.35rem;
+  padding-top: 0.15rem;
+}
+
+.grp__item {
+  position: relative;
+  padding-right: 0.85rem;
+  margin-right: 0.85rem;
+  font-family: var(--ff-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transition: color 0.22s var(--ease);
+}
+/* Hairline separator, matching the dimension rules used across the sheet. */
+.grp__item::after {
+  content: '';
+  position: absolute;
+  top: 0.15em;
+  bottom: 0.15em;
+  right: 0;
+  width: 1px;
+  background: var(--rule);
+}
+.grp__item:last-child { padding-right: 0; margin-right: 0; }
+.grp__item:last-child::after { display: none; }
+.grp__items:hover .grp__item { color: var(--anodize); }
+.grp__items .grp__item:hover { color: var(--signal); }
+
+.grp__edu { display: grid; gap: 0.25rem; font-size: var(--t-sm); }
+.grp__edu span { color: var(--anodize); }
+
+@media (max-width: 48rem) {
+  .grp { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,131 @@
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 4vw, 3rem) var(--gut);
+  background: var(--graphite);
+  color: var(--glass);
+  overflow: hidden;
+  transition: clip-path 0.78s var(--ease-in-out);
+  clip-path: inset(0 0 0 0);
+}
+
+/* The panel splits from the middle — the page is already there behind it. */
+.boot[data-lifting='true'] {
+  clip-path: inset(50% 0 50% 0);
+  pointer-events: none;
+}
+
+.boot__grid {
+  position: absolute;
+  inset: -1px;
+  background-image:
+    linear-gradient(to right, rgba(241, 243, 246, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(241, 243, 246, 0.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(120% 90% at 50% 45%, #000 15%, transparent 78%);
+}
+
+.boot__inner {
+  position: relative;
+  margin: auto;
+  width: min(46rem, 100%);
+  display: grid;
+  gap: clamp(1.75rem, 4vh, 3rem);
+}
+
+.boot__mark {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.35em;
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 9vw, 6rem);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  transition: font-stretch 0.5s var(--ease);
+}
+.boot__mark span:last-child { color: var(--anodize-2); }
+
+.boot__log {
+  display: grid;
+  gap: 0.45rem;
+  font-family: var(--ff-mono);
+  font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+  letter-spacing: 0.02em;
+}
+
+.boot__line {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  color: var(--anodize-2);
+}
+.boot__line[data-shown='true'] { opacity: 1; transform: none; }
+.boot__line[data-kind='cmd'] { color: var(--glass); }
+.boot__line[data-kind='ok'] { color: var(--signal); }
+
+.boot__glyph { flex: none; width: 1ch; opacity: 0.75; }
+.boot__text { white-space: nowrap; }
+.boot__leader {
+  flex: 1;
+  height: 1px;
+  min-width: 1.5rem;
+  background: repeating-linear-gradient(to right, currentColor 0 2px, transparent 2px 6px);
+  opacity: 0.32;
+}
+.boot__tail { flex: none; font-variant-numeric: tabular-nums; }
+
+/* dimension line */
+.boot__dim { display: flex; align-items: center; gap: 0.5rem; }
+.boot__tick { flex: none; width: 1px; height: 11px; background: var(--anodize); }
+.boot__track {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: rgba(241, 243, 246, 0.2);
+}
+.boot__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--signal);
+  transform-origin: left;
+  transition: transform 0.45s var(--ease);
+}
+.boot__pct {
+  flex: none;
+  font-family: var(--ff-mono);
+  font-size: var(--t-xxs);
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+  color: var(--anodize-2);
+}
+
+.boot__foot {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--ff-mono);
+  font-size: var(--t-xxs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--anodize);
+}
+
+@media (max-width: 34rem) {
+  .boot__foot span:last-child { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot { transition: none; }
+  .boot[data-lifting='true'] { opacity: 0; }
+  .boot__line { opacity: 1; transform: none; }
+}

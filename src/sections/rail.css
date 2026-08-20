@@ -1,0 +1,61 @@
+.rail {
+  border-top: 1px solid var(--graphite);
+  border-bottom: 1px solid var(--graphite);
+  background: var(--graphite);
+  color: var(--glass);
+  overflow: hidden;
+}
+
+.rail__track { display: flex; width: max-content; }
+.rail:hover .rail__set,
+.rail:focus-within .rail__set { animation-play-state: paused; }
+
+.rail__set {
+  display: flex;
+  align-items: center;
+  animation: run 52s linear infinite;
+}
+
+@keyframes run {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.rail__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.95rem 0;
+  white-space: nowrap;
+}
+
+.rail__value {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-stretch: 122%;
+  font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.rail__label {
+  font-family: var(--ff-mono);
+  font-size: var(--t-xxs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--anodize-2);
+}
+
+.rail__sep {
+  width: 5px;
+  height: 5px;
+  margin-inline: clamp(1.5rem, 3.5vw, 3rem);
+  border-radius: 99px;
+  background: var(--signal);
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail__set { animation: none; }
+  .rail__track { overflow-x: auto; }
+}
